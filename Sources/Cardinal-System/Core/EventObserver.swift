@@ -7,11 +7,6 @@
 
 import Foundation
 
-public protocol EventObserver {
-    var id: UUID { get }
-    var name: String { get }
-    var description: String { get }
-    
-    
+public protocol EventObserver: Information {
     func handleEvent(_ event: Event) 
 }

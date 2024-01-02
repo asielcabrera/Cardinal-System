@@ -7,8 +7,6 @@
 
 import Foundation
 
-public protocol Event {
-    var id: UUID { get }
-    var name: String { get }
-    var description: String { get } 
+public protocol Event: Information {
+    
 }
