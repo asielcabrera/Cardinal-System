@@ -13,7 +13,8 @@ let package = Package(
             targets: ["Cardinal-System"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0")
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+        .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -22,6 +23,7 @@ let package = Package(
             name: "Cardinal-System",
             dependencies: [
                 .product(name: "Vapor", package: "vapor"),
+                "Yams",
             ]
         ),
         .testTarget(
