@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol EventObserver: Information {
-    func handleEvent(_ event: Event) 
+public protocol Listener: Information {
+    func handleEvent(_ event: Event)
 }

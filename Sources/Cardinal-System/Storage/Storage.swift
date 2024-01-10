@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol Storage: Information {
+ public protocol Storage: Information {
     
 }

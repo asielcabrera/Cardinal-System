@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol Command: Information & Action {
+public protocol Command: Information & CardinalAction {
 
 }

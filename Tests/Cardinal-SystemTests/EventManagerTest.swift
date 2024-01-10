@@ -13,13 +13,13 @@ final class EventManagerTest: XCTestCase {
         var id: UUID
         var name: String
         var description: String
- 
+        var action: () -> Void
     }
     
     func testCreateEvent() {
         var eventManager = EventManager()
         let id = UUID()
-        let event = TestEvent(id: id, name: "testEvent", description: "Event for testing proporses")
+        let event = TestEvent( id: id, name: "testEvent", description: "Event for testing proporses", action: { })
         eventManager.createEvent(event)
         XCTAssertEqual(eventManager.getAllEvent().count, 1)
         XCTAssertEqual(eventManager.getEvent(id)?.name, "testEvent")

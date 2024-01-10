@@ -5,15 +5,16 @@ import PackageDescription
 
 let package = Package(
     name: "Cardinal-System",
-    platforms: [.macOS(.v10_15)],
+    platforms: [.macOS(.v10_14)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "Cardinal-System",
             targets: ["Cardinal-System"]),
+        .executable(name: "Run", targets: ["Run"])
     ],
     dependencies: [
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
+        .package(url: "https://github.com/apple/swift-nio.git", from: "2.62.0"),
         .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.0"),
     ],
     targets: [
@@ -22,10 +23,16 @@ let package = Package(
         .target(
             name: "Cardinal-System",
             dependencies: [
-                .product(name: "Vapor", package: "vapor"),
+                .product(name: "NIO", package: "swift-nio"),
+//                .product(name: "NIOPosix", package: "swift-nio"),
+                .product(name: "NIOHTTP1", package: "swift-nio"),
+                .product(name: "NIOWebSocket", package: "swift-nio"),
                 "Yams",
             ]
         ),
+        .executableTarget(name: "Run",
+                          dependencies: ["Cardinal-System"]
+                         ),
         .testTarget(
             name: "Cardinal-SystemTests",
             dependencies: ["Cardinal-System"]),

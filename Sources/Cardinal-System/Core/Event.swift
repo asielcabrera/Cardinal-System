@@ -7,6 +7,7 @@
 
 import Foundation
 
-public protocol Event: Information {
-    
+public protocol Event: Information { 
+    var action: () -> Void { get }
 }
+

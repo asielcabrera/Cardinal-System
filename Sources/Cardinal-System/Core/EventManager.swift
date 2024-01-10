@@ -8,10 +8,11 @@
 import Foundation
 
 public struct EventManager {
+    
     private var events: [Event] = []
-    private var observers: [EventObserver] = []
+    private var observers: [Listener] = []
     
-    
+    public init() {}
     public mutating func createEvent(_ event: Event) {
         events.append(event)
         notififyObservers(event)
@@ -28,6 +29,7 @@ public struct EventManager {
     public func getEventsByType<T: Event>(_ type: T.Type) -> [Event] {
         return events.filter { $0 is T }
     }
+    
     mutating func removeEvent(_ id: UUID) {
         events.removeAll { $0.id == id }
     }
@@ -36,12 +38,12 @@ public struct EventManager {
         observers.forEach { $0.handleEvent(event) }
     }
     
-    func notifyObserverOfEvent<T: EventObserver>(_ type: T.Type, event: Event) {
-        let filteredObservers: [EventObserver] = observers.filter { $0 is T }
+    func notifyObserverOfEvent<T: Listener>(_ type: T.Type, event: Event) {
+        let filteredObservers: [Listener] = observers.filter { $0 is T }
         filteredObservers.forEach { $0.handleEvent(event) }
     }
     
-    public mutating func addObserver(_ observer: EventObserver) {
+    public mutating func addObserver(_ observer: Listener) {
         observers.append(observer)
     }
     mutating func removeEventObserver(_ id: UUID) {
